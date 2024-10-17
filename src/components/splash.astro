@@ -2,76 +2,101 @@
 import Starfield from '~/components/starfield.astro';
 import Countdown from './countdown.astro';
 import CallToAction from './call-to-action.astro';
-import ProfileCard from './profile-card.astro';
-
-const widths = [450, 800];
-const sizes = '(min-width: 640px) 42vw, 67vw';
+import { Image } from 'astro:assets';
+import foto from '~/assets/heronew.webp';
 ---
 
-<section class="relative h-full bg-black">
+<section class="relative mb-40 h-full sm:mb-0">
   <Starfield />
-  <!-- <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
-    <HeroImage />
-  </div> -->
-  <div class="relative flex h-full flex-col place-items-center justify-evenly gap-8">
-    <h2 class="flex flex-col items-center gap-2 sm:gap-4">
-      <!-- <Icon name="logomark" class="size-24 text-white md:size-32" /> -->
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-6xl"
-        data-aos="fade-up"
-      >
-        El Increíble Método,
-      </div>
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-8xl"
-        data-aos="fade-up"
-      >
-        Mamá que Factura.
-      </div>
-    </h2>
 
-    <!-- <div class="col-span-2"> -->
-    <div class="flex flex-col flex-wrap items-center gap-8 sm:col-span-2">
-      <CallToAction />
-      <Countdown class="fade-up" />
+  <div class="relative flex h-full flex-col sm:flex-row">
+    <div class="relative z-10 mb-4 w-full sm:hidden">
+      <Image
+        class="profile-image h-full object-cover"
+        src={foto}
+        alt="Hero picture"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent"></div>
+    </div>
+
+    <div
+      class="z-20 flex w-full flex-col items-center justify-center gap-6 px-4 text-center sm:w-1/2"
+    >
+      <h2 class="mt-5 flex flex-col items-center gap-2 sm:gap-3">
+        <div
+          class="gradient-text font-extrabold tracking-tighter text-3xl sm:text-6xl lg:text-4xl"
+          data-aos="fade-up"
+        >
+          El Increíble Método,
+        </div>
+        <div
+          class="gradient-text font-extrabold tracking-tighter text-3xl sm:text-6xl lg:text-4xl"
+          data-aos="fade-up"
+        >
+          Mamá que Factura.
+        </div>
+      </h2>
+
+      <div
+        class="gradient-text mt-5 font-extrabold leading-snug tracking-tighter text-lg sm:mt-4 sm:leading-relaxed sm:text-lg"
+        data-aos="fade-up"
+      >
+        <p class="text-lg sm:text-lg">
+          Así fue como logré entrar en los negocios digitales, creando tiendas por internet que me
+          permitieron ser una mamá presente en la vida de mis hijas.<br />
+          En este entrenamiento gratuito, aprenderás cómo comprar una tienda virtual exitosa y vivir
+          de ello, sin necesidad de experiencia previa.
+        </p>
+      </div>
+    </div>
+
+    <div class="relative hidden h-full w-1/2 sm:block">
+      <Image
+        class="profile-image h-full object-cover"
+        src={foto}
+        alt="Hero picture"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 z-20 bg-gradient-to-r from-black to-transparent"></div>
     </div>
   </div>
+
+  <div
+    class="absolute z-30 mx-auto mb-8 flex flex-col items-center justify-center gap-4 sm:bottom-20 sm:right-10 sm:w-1/2"
+  >
+    <Countdown class="fade-up" />
+    <CallToAction class="call-to-action" />
+  </div>
 </section>
+
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
   AOS.init({
-    duration: 750
+    duration: 1000,
+    easing: 'ease-in-out'
   });
-</script>
-<noscript>
-  <style>
-    #splash-bg-fallback {
-      display: block;
-    }
-  </style>
-</noscript>
-<style>
-  /* @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.5s ease forwards;
-  } */
+  let countdownTime = 60 * 60;
+  let timer: string | number | NodeJS.Timeout | undefined;
+
+  const startCountdown = () => {
+    timer = setInterval(() => {
+      if (countdownTime > 0) {
+        countdownTime--;
+      } else {
+        clearInterval(timer);
+      }
+    }, 1000);
+  };
+</script>
+
+<style>
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
     }
-
     100% {
       transform: translate3d(0, 30px, 0);
     }
@@ -81,17 +106,97 @@ const sizes = '(min-width: 640px) 42vw, 67vw';
     animation: float linear 2.5s infinite alternate;
   }
 
+  .bg-gradient-to-r {
+    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+  }
+
+  .bg-gradient-to-b {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+  }
+
+  .call-to-action {
+    background-color: #ffcc00;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  .call-to-action:hover {
+    background-color: #ffaa00;
+  }
+
+  .gradient-text {
+    line-height: 1.4;
+  }
+
+  .text-xs {
+    font-size: 0.75rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+  }
+
+  .text-base {
+    font-size: 1rem;
+  }
+
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .mirrored {
+    transform: scaleX(-1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #astronaut {
       @apply animate-none;
     }
-
     :global(#starfield) {
       @apply hidden;
     }
+  }
 
-    #splash-bg-fallback {
-      @apply block;
+  @media (max-width: 640px) {
+    .relative {
+      position: relative;
+    }
+
+    .flex-col {
+      margin-top: 0;
+      gap: 1.5rem;
+    }
+
+    .gradient-text {
+      font-size: 2rem;
+    }
+
+    .text-base {
+      font-size: 1.2rem;
+    }
+
+    .text-lg {
+      font-size: 1rem;
+    }
+
+    .absolute {
+      position: relative;
+      background-color: transparent;
+    }
+
+    .bg-gradient-to-b {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
+      z-index: 0;
+    }
+
+    .profile-image {
+      position: relative;
+      z-index: 10;
+      max-width: 100%;
+      height: auto;
     }
   }
 </style>
