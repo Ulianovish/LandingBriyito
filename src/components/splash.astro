@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import foto from '~/assets/heronew.webp';
 ---
 
-<section class="relative mb-40 h-full sm:mb-0">
+<section class="relative sm:mb-0 sm:h-full">
   <Starfield />
 
   <div class="relative flex h-full flex-col sm:flex-row">
@@ -17,36 +17,31 @@ import foto from '~/assets/heronew.webp';
         alt="Hero picture"
         loading="lazy"
       />
-      <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent"></div>
+      <!-- <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent"></div> -->
+      <div class="absolute -inset-1 bg-gradient-to-t from-black to-transparent"></div>
     </div>
 
     <div
-      class="z-20 flex w-full flex-col items-center justify-center gap-6 px-4 text-center sm:w-1/2"
+      class="z-20 flex w-full flex-col items-center justify-center gap-6 px-4 text-center max-[640px]:-mt-52 sm:w-1/2"
     >
-      <h2 class="mt-5 flex flex-col items-center gap-2 sm:gap-3">
+      <h2 class="mt-5 flex flex-col items-center">
         <div
-          class="gradient-text font-extrabold tracking-tighter text-3xl sm:text-6xl lg:text-4xl"
+          class="gradient-text font-extrabold tracking-tighter text-5xl xl:text-6xl"
           data-aos="fade-up"
         >
-          El Increíble Método,
-        </div>
-        <div
-          class="gradient-text font-extrabold tracking-tighter text-3xl sm:text-6xl lg:text-4xl"
-          data-aos="fade-up"
-        >
-          Mamá que Factura.
+          El Increíble Método, <br /> Mamá que Factura.
         </div>
       </h2>
 
       <div
-        class="gradient-text mt-5 font-extrabold leading-snug tracking-tighter text-lg sm:mt-4 sm:leading-relaxed sm:text-lg"
+        class="gradient-text mt-5 w-3/4 font-extrabold leading-snug tracking-tighter text-lg sm:mt-4 sm:leading-relaxed sm:text-lg"
         data-aos="fade-up"
       >
-        <p class="text-lg sm:text-lg">
+        <p class="leading-3 text-lg sm:text-lg">
           Así fue como logré entrar en los negocios digitales, creando tiendas por internet que me
-          permitieron ser una mamá presente en la vida de mis hijas.<br />
-          En este entrenamiento gratuito, aprenderás cómo comprar una tienda virtual exitosa y vivir
-          de ello, sin necesidad de experiencia previa.
+          permitieron ser una mamá presente en la vida de mis hijas.<br /><br /> En este entrenamiento
+          gratuito, aprenderás cómo comprar una tienda virtual exitosa y vivir de ello, sin necesidad
+          de experiencia previa.
         </p>
       </div>
     </div>
@@ -58,18 +53,22 @@ import foto from '~/assets/heronew.webp';
         alt="Hero picture"
         loading="lazy"
       />
-      <div class="absolute inset-0 z-20 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="absolute -inset-1 z-20 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="absolute -inset-1 z-20 bg-gradient-to-t from-black to-transparent"></div>
     </div>
-  </div>
-
-  <div
-    class="absolute z-30 mx-auto mb-8 flex flex-col items-center justify-center gap-4 sm:bottom-20 sm:right-10 sm:w-1/2"
-  >
-    <Countdown class="fade-up" />
-    <CallToAction class="call-to-action" />
   </div>
 </section>
 
+<div class="scroll-indicator sticky z-20 mx-auto mt-8 block sm:hidden"></div>
+
+<div
+  class="relative z-30 mx-auto mt-12 flex w-full flex-col items-center justify-center gap-4 sm:absolute sm:bottom-20 sm:right-1 sm:w-1/2 md:mt-0"
+>
+  <Countdown class="fade-up" />
+  <CallToAction class="call-to-action" />
+</div>
+
+<div class="scroll-indicator sticky z-20 mx-auto -mt-10 hidden sm:block"></div>
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
@@ -93,6 +92,32 @@ import foto from '~/assets/heronew.webp';
 </script>
 
 <style>
+  .scroll-indicator {
+    width: 0;
+    height: 0;
+    /* margin: -50px auto 0 auto; */
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 0;
+    border-top: 30px solid #ed4f90; /* Color del triángulo */
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-15px);
+    }
+    60% {
+      transform: translateY(-7px);
+    }
+  }
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
@@ -104,99 +129,5 @@ import foto from '~/assets/heronew.webp';
 
   #astronaut {
     animation: float linear 2.5s infinite alternate;
-  }
-
-  .bg-gradient-to-r {
-    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
-  }
-
-  .bg-gradient-to-b {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
-  }
-
-  .call-to-action {
-    background-color: #ffcc00;
-    padding: 6px 12px;
-    font-size: 0.875rem;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-  }
-
-  .call-to-action:hover {
-    background-color: #ffaa00;
-  }
-
-  .gradient-text {
-    line-height: 1.4;
-  }
-
-  .text-xs {
-    font-size: 0.75rem;
-  }
-
-  .text-sm {
-    font-size: 0.875rem;
-  }
-
-  .text-base {
-    font-size: 1rem;
-  }
-
-  .text-lg {
-    font-size: 1rem;
-  }
-
-  .mirrored {
-    transform: scaleX(-1);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #astronaut {
-      @apply animate-none;
-    }
-    :global(#starfield) {
-      @apply hidden;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .relative {
-      position: relative;
-    }
-
-    .flex-col {
-      margin-top: 0;
-      gap: 1.5rem;
-    }
-
-    .gradient-text {
-      font-size: 2rem;
-    }
-
-    .text-base {
-      font-size: 1.2rem;
-    }
-
-    .text-lg {
-      font-size: 1rem;
-    }
-
-    .absolute {
-      position: relative;
-      background-color: transparent;
-    }
-
-    .bg-gradient-to-b {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
-      z-index: 0;
-    }
-
-    .profile-image {
-      position: relative;
-      z-index: 10;
-      max-width: 100%;
-      height: auto;
-    }
   }
 </style>

@@ -1,9 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import whatsapp from '~/assets/whatsapp.svg';
+import Modal from './modal.astro';
 ---
 
 <div data-aos="fade-up">
+  <button
+    onclick="openModal()"
+    class="button-call gradient-text relative z-10 font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
+  >
+    <Image src={whatsapp} alt="learn" class="logo-svg" />
+    INSCRIBETE GRATIS AQUI
+    <div class="button-call-2 opacity-0"></div>
+  </button>
+  <Modal />
+</div>
+<!-- <div data-aos="fade-up">
   <a href="https://chat.whatsapp.com/HgnvveWfduzKfNepLLxB01" target="_blank" id="whatsappLink">
     <div
       class="button-call gradient-text relative z-10 font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
@@ -13,8 +25,7 @@ import whatsapp from '~/assets/whatsapp.svg';
       <div class="button-call-2 opacity-0"></div>
     </div>
   </a>
-</div>
-
+</div> -->
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
@@ -46,7 +57,7 @@ import whatsapp from '~/assets/whatsapp.svg';
 <style>
   .button-call,
   .button-call-2 {
-    width: 350px;
+    width: 370px;
     height: 70px;
     font-size: 24px;
     text-align: center;
@@ -105,7 +116,7 @@ import whatsapp from '~/assets/whatsapp.svg';
   @media (max-width: 768px) {
     .button-call {
       width: 250px;
-      height: 80px;
+      height: 60px;
       font-size: 16px;
       line-height: 80px;
     }
