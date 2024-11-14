@@ -4,6 +4,13 @@ import rocket from '~/assets/rocket.svg';
 import learn from '~/assets/learn.svg';
 import trophy from '~/assets/trophy.svg';
 import store from '~/assets/store.svg';
+import { siteConfig } from '~/config/site.config';
+const icons = {
+  learn,
+  store,
+  rocket,
+  trophy
+};
 ---
 
 <div class="gradient relative z-10 grid space-y-12 px-8 py-10 min-[449px]:px-4">
@@ -20,72 +27,23 @@ import store from '~/assets/store.svg';
   <div
     class="inline-flex max-w-[1100px] flex-wrap justify-center gap-4 justify-self-center min-[900px]:gap-8"
   >
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div
-          class="img-container gradient-text text-center font-extrabold tracking-tighter text-6xl"
-        >
-          <Image src={learn} alt="learn" />
+    {
+      siteConfig.classes.map((classItem) => (
+        <div class="card h-60 w-[352px]" data-aos="fade-up">
+          <div class="profile">
+            <div class="img-container">
+              <Image src={icons[classItem.icon as keyof typeof icons]} alt={classItem.title} />
+            </div>
+            <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
+              <h1>{classItem.title}</h1>
+            </div>
+          </div>
+          <div class="description text-justify uppercase">
+            <span>{classItem.description}</span>
+          </div>
         </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #1</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Aprenderás el mismo método que están usando cientos de mamás para crear un negocio solido
-          en internet con tiendas en línea
-        </span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={store} alt="store" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #2</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Los 3 modelos de negocio que te permitirá comprar TÚ PROPIA TIENDA en internet que renta
-          todos los meses
-        </span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={rocket} alt="rocket" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #3</h1>
-        </div>
-      </div>
-      <div class="gradient-text-2 description text-justify uppercase">
-        <span> La forma más fácil de comprar TÚ PROPIA TIENDA en internet en menos de 15 días</span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={trophy} alt="trophy" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #4</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Como convertirte en una mamá que factura exitosa creando TIENDAS EN LÍNEA, y recibir una
-          renta
-        </span>
-      </div>
-    </div>
+      ))
+    }
   </div>
 </div>
 

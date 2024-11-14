@@ -1,5 +1,9 @@
+---
+import { siteConfig } from '~/config/site.config';
+---
+
 <div class="middle" data-aos="fade-up">
-  <h1 class="gradient-text font-extrabold tracking-tighter text-3xl">La Masterclass comienza en</h1>
+  <h1 class="gradient-text font-extrabold tracking-tighter text-3xl">{siteConfig.dates.title}</h1>
   <div class="time font-semibold uppercase">
     <span class="gradient-text">
       <div id="d">00</div>
@@ -22,6 +26,7 @@
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
+  import { siteConfig } from '~/config/site.config';
   AOS.init({
     duration: 750
   });
@@ -36,7 +41,7 @@
 
   function calculateRemainingTime() {
     const comingYear = new Date().getFullYear() + 1;
-    const comingDate = new Date('2024-10-26T21:00:00');
+    const comingDate = new Date(siteConfig.dates.masterclass);
 
     const now = new Date();
     // console.log(now);

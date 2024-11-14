@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import foto from '~/assets/foto.webp';
+import { siteConfig } from '~/config/site.config';
 ---
 
 <div
@@ -9,8 +10,10 @@ import foto from '~/assets/foto.webp';
 >
   <Image class="profile-image ml-[-6%] rounded-full" src={foto} alt="Profile picture" />
   <div class="profile-info flex flex-col items-center p-4">
-    <h1 class="gradient-text-2 mb-2 font-bold text-xl">Briyito Barrero</h1>
-    <p class="gradient-text-2 text-sm">Mamá Emprendedora</p>
+    <h1 class="gradient-text-2 mb-2 font-bold text-xl">
+      {siteConfig.author}
+    </h1>
+    <p class="gradient-text-2 text-sm">{siteConfig.authorSubtitle}</p>
   </div>
 </div>
 

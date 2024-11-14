@@ -4,6 +4,7 @@ import Countdown from './countdown.astro';
 import CallToAction from './call-to-action.astro';
 import { Image } from 'astro:assets';
 import foto from '~/assets/heronew.webp';
+import { siteConfig } from '~/config/site.config';
 ---
 
 <section class="relative sm:mb-0 sm:h-full">
@@ -28,21 +29,15 @@ import foto from '~/assets/heronew.webp';
         <div
           class="gradient-text font-extrabold tracking-tighter text-5xl xl:text-6xl"
           data-aos="fade-up"
-        >
-          El Increíble Método, <br /> Mamá que Factura.
-        </div>
+          set:html={siteConfig.sections.hero.title}
+        />
       </h2>
 
       <div
         class="gradient-text mt-5 w-3/4 font-extrabold leading-snug tracking-tighter text-lg sm:mt-4 sm:leading-relaxed sm:text-lg"
         data-aos="fade-up"
       >
-        <p class="leading-3 text-lg sm:text-lg">
-          Así fue como logré entrar en los negocios digitales, creando tiendas por internet que me
-          permitieron ser una mamá presente en la vida de mis hijas.<br /><br /> En este entrenamiento
-          gratuito, aprenderás cómo comprar una tienda virtual exitosa y vivir de ello, sin necesidad
-          de experiencia previa.
-        </p>
+        <p class="leading-3 text-lg sm:text-lg" set:html={siteConfig.sections.hero.description} />
       </div>
     </div>
 

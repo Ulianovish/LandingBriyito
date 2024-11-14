@@ -2,6 +2,7 @@
 import CallToAction from './call-to-action.astro';
 import ProfileCard from './profile-card.astro';
 import Countdown from './countdown.astro';
+import { siteConfig } from '~/config/site.config';
 ---
 
 <div class="gradient relative z-10 grid gap-8 px-8 pb-8">
@@ -9,28 +10,16 @@ import Countdown from './countdown.astro';
     class="gradient-text text-center font-extrabold uppercase tracking-tighter text-3xl"
     data-aos="fade-up"
   >
-    ¿Quién Soy y por qué puedo apoyarte?
+    {siteConfig.sections.about.title}
   </div>
   <div class="flex justify-center gap-8 text-sm max-[752px]:flex-wrap">
     <ProfileCard />
     <div class="max-w-[600px] leading-tight">
-      <p class="gradient-text mb-6 text-justify" data-aos="fade-up">
-        ¡Hola! Soy Briyito Barrero, mamá y emprendedora apasionada. Aunque estudié ingeniería civil
-        y gerencia de proyectos, mi dedicación como mamá y ama de casa me llevó a buscar nuevas
-        formas de generar ingresos desde el hogar a través de negocios en línea. Tras muchas
-        experiencias, descubrí las claves para una vida abundante y ahora quiero compartir contigo
-        estrategias y herramientas para que tú también logres resultados en el mundo virtual. Por
-        eso, creé "Mamá que Factura", un método diseñado para mamás como tú que desean generar
-        ingresos desde casa y ser mamás presentes en la vida de sus niños.<br /><br />
-
-        Puedo ser tu guía en este viaje porque comprendo las exigencias de ser una mamá ama de casa,
-        profesional y emprendedora. He transitado por ese camino y entiendo los desafíos que
-        conlleva. Mi experiencia me ha enseñado valiosas lecciones que compartiré contigo,
-        ayudándote a sortear obstáculos y alcanzar tus metas más rápidamente. Con soluciones
-        prácticas, te acompañaré paso a paso para que puedas generar ingresos desde la comodidad de
-        tu hogar. Estoy aquí para brindarte el apoyo necesario y ayudarte a construir una vida plena
-        y exitosa como mamá emprendedora.
-      </p>
+      <p
+        class="gradient-text mb-6 text-justify"
+        data-aos="fade-up"
+        set:html={siteConfig.sections.about.content}
+      />
     </div>
   </div>
 </div>
