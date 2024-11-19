@@ -41,15 +41,15 @@ import { siteConfig } from '~/config/site.config';
       </div>
     </div>
 
-    <div class="relative hidden h-full w-1/2 sm:block">
+    <div class="relative hidden h-full w-1/2 overflow-hidden sm:block">
       <Image
-        class="profile-image h-full object-cover"
+        class="profile-image h-full object-cover xl:h-[120%] 2xl:h-[135%]"
         src={foto}
         alt="Hero picture"
         loading="lazy"
       />
-      <div class="absolute -inset-1 z-20 bg-gradient-to-r from-black to-transparent"></div>
-      <div class="absolute -inset-1 z-20 bg-gradient-to-t from-black to-transparent"></div>
+      <div class="absolute inset-0 z-20 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="absolute inset-0 z-20 bg-gradient-to-t from-black to-transparent"></div>
     </div>
   </div>
 </section>
