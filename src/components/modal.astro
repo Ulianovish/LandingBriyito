@@ -125,7 +125,7 @@ const ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/20686036/25qrkto/';
 
     // Manejar el envío del formulario
     form?.addEventListener('submit', async (e) => {
-      fbq('track', 'CompleteRegistration');
+      fbq('track', 'Lead');
       e.preventDefault();
       showLoading();
 
