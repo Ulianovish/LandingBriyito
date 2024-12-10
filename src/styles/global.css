@@ -15,3 +15,14 @@ a,
   @apply bg-clip-text text-transparent;
   @apply bg-gradient-to-br from-pink-900 via-black to-orange-900;
 }
+
+/* Ocultar scrollbar para Chrome, Safari y Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ocultar scrollbar para IE, Edge y Firefox */
+* {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;  /* Firefox */
+}

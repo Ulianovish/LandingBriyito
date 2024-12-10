@@ -1,113 +1,118 @@
+---
+import { siteConfig } from '~/config/site.config';
+---
+
 <div class="middle" data-aos="fade-up">
-	<h1 class="gradient-text font-extrabold tracking-tighter text-xl">La Masterclass comienza en</h1>
-	<div class="time font-semibold uppercase">
-		<span class="gradient-text">
-			<div id="d">00</div>
-			Días
-		</span>
-		<span class="gradient-text">
-			<div id="h">00</div>
-			Horas
-		</span>
-		<span class="gradient-text">
-			<div id="m">00</div>
-			Minutos
-		</span>
-		<span class="gradient-text">
-			<div id="s">00</div>
-			Segundos
-		</span>
-	</div>
+  <h1 class="gradient-text font-extrabold tracking-tighter text-3xl">{siteConfig.dates.title}</h1>
+  <div class="time font-semibold uppercase">
+    <span class="gradient-text">
+      <div id="d">00</div>
+      Días
+    </span>
+    <span class="gradient-text">
+      <div id="h">00</div>
+      Horas
+    </span>
+    <span class="gradient-text">
+      <div id="m">00</div>
+      Minutos
+    </span>
+    <span class="gradient-text">
+      <div id="s">00</div>
+      Segundos
+    </span>
+  </div>
 </div>
 <script>
-	import AOS from 'aos';
-	import 'aos/dist/aos.css';
-	AOS.init({
-		duration: 750
-	});
-	const d = document.getElementById('d');
-	const h = document.getElementById('h');
-	const m = document.getElementById('m');
-	const s = document.getElementById('s');
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+  import { siteConfig } from '~/config/site.config';
+  AOS.init({
+    duration: 750
+  });
+  const d = document.getElementById('d');
+  const h = document.getElementById('h');
+  const m = document.getElementById('m');
+  const s = document.getElementById('s');
 
-	function getTrueNumber(num: any) {
-		return num < 10 ? '0' + num : num;
-	}
+  function getTrueNumber(num: any) {
+    return num < 10 ? '0' + num : num;
+  }
 
-	function calculateRemainingTime() {
-		const comingYear = new Date().getFullYear() + 1;
-		const comingDate = new Date('2024-08-26T21:00:00');
+  function calculateRemainingTime() {
+    const comingYear = new Date().getFullYear() + 1;
+    const comingDate = new Date(siteConfig.dates.masterclass);
 
-		const now = new Date();
-		console.log(now);
-		console.log(comingDate);
-		const remainingTime = comingDate.getTime() - now.getTime();
-		const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-		const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		const mins = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-		const secs = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    const now = new Date();
+    // console.log(now);
+    // console.log(comingDate);
+    const remainingTime = comingDate.getTime() - now.getTime();
+    const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-		if (d) {
-			d.innerHTML = getTrueNumber(days);
-		}
-		if (h) {
-			h.innerHTML = getTrueNumber(hours);
-		}
-		if (m) {
-			m.innerHTML = getTrueNumber(mins);
-		}
-		if (s) {
-			s.innerHTML = getTrueNumber(secs);
-		}
+    if (d) {
+      d.innerHTML = getTrueNumber(days);
+    }
+    if (h) {
+      h.innerHTML = getTrueNumber(hours);
+    }
+    if (m) {
+      m.innerHTML = getTrueNumber(mins);
+    }
+    if (s) {
+      s.innerHTML = getTrueNumber(secs);
+    }
 
-		return remainingTime;
-	}
+    return remainingTime;
+  }
 
-	function initCountdown() {
-		const interval = setInterval(() => {
-			const remainingTimeInMs = calculateRemainingTime();
+  function initCountdown() {
+    const interval = setInterval(() => {
+      const remainingTimeInMs = calculateRemainingTime();
 
-			if (remainingTimeInMs <= 1000) {
-				clearInterval(interval);
-				initCountdown();
-			}
-		}, 1000);
-	}
+      if (remainingTimeInMs <= 1000) {
+        clearInterval(interval);
+        initCountdown();
+      }
+    }, 1000);
+  }
 
-	initCountdown();
+  initCountdown();
 </script>
 <style>
-	.middle {
-		text-align: center;
-		user-select: none;
-	}
+  .middle {
+    text-align: center;
+    user-select: none;
+  }
 
-	.time {
-		color: #d99c3b;
-		text-transform: uppercase;
-		display: flex;
-		justify-content: center;
-	}
+  .time {
+    color: #d99c3b;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+  }
 
-	.time span {
-		padding: 0 14px;
-		font-size: 0.8rem;
-	}
+  .time span {
+    padding: 0 14px;
+    font-size: 0.8rem;
+  }
 
-	.time span div {
-		font-size: 3rem;
-	}
+  .time span div {
+    font-size: 1.8rem;
+  }
 
-	@media (max-width: 740px) {
-		.label {
-			font-size: 1.7rem;
-		}
-		.time span {
-			padding: 0 16px;
-			font-size: 0.6rem;
-		}
-		.time span div {
-			font-size: 2rem;
-		}
-	}
+  @media (max-width: 740px) {
+    .label {
+      font-size: 1.7rem;
+    }
+    .time span {
+      padding: 0 16px;
+      font-size: 0.6rem;
+    }
+    .time span div {
+      font-size: 2rem;
+    }
+  }
 </style>

@@ -1,15 +1,32 @@
+---
+import { Image } from 'astro:assets';
+import whatsapp from '~/assets/whatsapp.svg';
+import Modal from './modal.astro';
+import { siteConfig } from '~/config/site.config';
+---
+
 <div data-aos="fade-up">
-  <!-- <a href="https://chat.whatsapp.com/JQ2ns318gYj8ZFsOoUuHQh" target="_blank" id="whatsappLink"> -->
+  <button
+    onclick="openModal()"
+    class="button-call gradient-text relative z-10 font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
+  >
+    <Image src={whatsapp} alt="learn" class="logo-svg" />
+    {siteConfig.ui.ctaButton}
+    <div class="button-call-2 opacity-0"></div>
+  </button>
+  <Modal />
+</div>
+<!-- <div data-aos="fade-up">
   <a href="https://chat.whatsapp.com/HgnvveWfduzKfNepLLxB01" target="_blank" id="whatsappLink">
     <div
-      class="button-call gradient-text font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
+      class="button-call gradient-text relative z-10 font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
     >
-      UNIRME A WHATSAPP
+      <Image src={whatsapp} alt="learn" class="logo-svg" />
+      INSCRIBETE GRATIS AQUI
       <div class="button-call-2 opacity-0"></div>
     </div>
   </a>
-</div>
-
+</div> -->
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
@@ -21,9 +38,7 @@
     n = f.fbq = function () {
       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
     };
-    if (!f._fbq) f._fbq = n;
-    n.push = n;
-    n.loaded = !0;
+    n.push = n.loaded = !0;
     n.version = '2.0';
     n.queue = [];
     t = b.createElement(e);
@@ -35,20 +50,17 @@
   fbq('init', '7974826735928388');
   fbq('track', 'PageView');
 
-  //<!-- End Meta Pixel Code -->
-  //fbq('init', '1129534935130605'); //
-  document.getElementById('whatsappLink').addEventListener('click', function () {
-    fbq('track', 'CompleteRegistration');
-  });
-  //conversion event method
-  // }
+  // document.getElementById('whatsappLink').addEventListener('click', function () {
+  //   fbq('track', 'CompleteRegistration');
+  // });
 </script>
+
 <style>
   .button-call,
   .button-call-2 {
-    width: 350px;
-    height: 100px;
-    font-size: 30px;
+    width: 370px;
+    height: 70px;
+    font-size: 24px;
     text-align: center;
     line-height: 100px;
     color: rgb(0, 0, 0);
@@ -57,18 +69,28 @@
     background-size: 600%;
     -webkit-animation: anime 16s linear infinite;
     animation: anime 16s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .logo-svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
   .button-call-2 {
     position: absolute;
     margin-top: -70px;
     z-index: -1;
     filter: blur(30px);
-    /* opacity: 0.8; */
   }
 
   .button-call:hover > .button-call-2 {
     opacity: 0.8;
   }
+
   @-webkit-keyframes anime {
     0% {
       background-position: 0% 50%;
@@ -89,6 +111,20 @@
     }
     100% {
       background-position: 0% 50%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .button-call {
+      width: 250px;
+      height: 60px;
+      font-size: 16px;
+      line-height: 80px;
+    }
+
+    .logo-svg {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>

@@ -4,11 +4,18 @@ import rocket from '~/assets/rocket.svg';
 import learn from '~/assets/learn.svg';
 import trophy from '~/assets/trophy.svg';
 import store from '~/assets/store.svg';
+import { siteConfig } from '~/config/site.config';
+const icons = {
+  learn,
+  store,
+  rocket,
+  trophy
+};
 ---
 
-<div class="gradient grid space-y-12 px-8 py-10 min-[449px]:px-4">
+<div class="gradient relative z-10 grid space-y-12 px-8 py-10 min-[449px]:px-4">
   <div
-    class="gradient-text-2 text-center font-extrabold tracking-tighter text-3xl"
+    class="gradient-text text-center font-extrabold tracking-tighter text-3xl"
     data-aos="fade-up"
   >
     4 CLASES CON EL PASO A PASO<span class="hidden min-[480px]:inline min-[900px]:hidden"
@@ -20,74 +27,26 @@ import store from '~/assets/store.svg';
   <div
     class="inline-flex max-w-[1100px] flex-wrap justify-center gap-4 justify-self-center min-[900px]:gap-8"
   >
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div
-          class="img-container gradient-text text-center font-extrabold tracking-tighter text-6xl"
-        >
-          <Image src={learn} alt="learn" />
+    {
+      siteConfig.classes.map((classItem) => (
+        <div class="card h-60 w-[352px]" data-aos="fade-up">
+          <div class="profile">
+            <div class="img-container">
+              <Image src={icons[classItem.icon as keyof typeof icons]} alt={classItem.title} />
+            </div>
+            <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
+              <h1>{classItem.title}</h1>
+            </div>
+          </div>
+          <div class="description text-justify uppercase">
+            <span>{classItem.description}</span>
+          </div>
         </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #1</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Aprenderás el mismo método que están usando cientos de mamás para crear un negocio solido
-          en internet con tiendas en línea
-        </span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={store} alt="store" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #2</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Los 3 modelos de negocio que te permitirá comprar TÚ PROPIA TIENDA en internet que renta
-          todos los meses
-        </span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={rocket} alt="rocket" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #3</h1>
-        </div>
-      </div>
-      <div class="gradient-text-2 description text-justify uppercase">
-        <span> La forma más fácil de comprar TÚ PROPIA TIENDA en internet en menos de 15 días</span>
-      </div>
-    </div>
-
-    <div class="card h-60 w-[352px]" data-aos="fade-up">
-      <div class="profile">
-        <div class="img-container">
-          <Image src={trophy} alt="trophy" />
-        </div>
-        <div class="gradient-text-2 ml-4 self-center text-center font-extrabold text-2xl">
-          <h1>CLASE #4</h1>
-        </div>
-      </div>
-      <div class="description text-justify uppercase">
-        <span>
-          Como convertirte en una mamá que factura exitosa creando TIENDAS EN LÍNEA, y recibir una
-          renta
-        </span>
-      </div>
-    </div>
+      ))
+    }
   </div>
 </div>
+
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
@@ -95,18 +54,14 @@ import store from '~/assets/store.svg';
     duration: 750
   });
 </script>
+
 <style>
   .card {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #dd7f8d;
-    /* background: linear-gradient(
-      -135deg,
-      rgb(0, 0, 0),
-      rgb(0, 0, 0)
-    ); */
+    background-color: rgba(221, 127, 141, 0.6);
     -webkit-box-shadow: 0px 0px 2px -2px #c7c3c7;
     -moz-box-shadow: 0px 0px 2px -2px #c7c3c7;
     box-shadow: 0px 0px 2px -2px #c7c3c7;
@@ -140,18 +95,18 @@ import store from '~/assets/store.svg';
     flex-direction: column;
     justify-content: center;
   }
+
   .name > h1 {
     margin: 0;
     font-weight: 600;
-    /* font-family: Lato, sans-serif; */
     color: white;
     letter-spacing: 1px;
     font-size: 1.3rem;
   }
+
   .name > h2 {
     margin: 0;
     margin-top: 0.7rem;
-    /* font-family: Lato, sans-serif; */
     color: rgba(30, 30, 30, 0.8);
     font-size: 0.9rem;
   }
@@ -162,14 +117,21 @@ import store from '~/assets/store.svg';
     display: flex;
     align-items: center;
   }
+
   .description > span {
-    /* font-family: Lato, sans-serif; */
     color: black;
     font-size: 1rem;
     font-weight: 800;
     letter-spacing: 0.4px;
   }
+
   .gradient {
-    background-color: #b76e79;
+    background-color: transparent;
+  }
+
+  @media (max-width: 900px) {
+    .card {
+      width: 100%;
+    }
   }
 </style>

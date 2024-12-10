@@ -2,76 +2,121 @@
 import Starfield from '~/components/starfield.astro';
 import Countdown from './countdown.astro';
 import CallToAction from './call-to-action.astro';
-import ProfileCard from './profile-card.astro';
-
-const widths = [450, 800];
-const sizes = '(min-width: 640px) 42vw, 67vw';
+import { Image } from 'astro:assets';
+import foto from '~/assets/heronew.webp';
+import { siteConfig } from '~/config/site.config';
 ---
 
-<section class="relative h-full bg-black">
+<section class="relative sm:mb-0 sm:h-full">
   <Starfield />
-  <!-- <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
-    <HeroImage />
-  </div> -->
-  <div class="relative flex h-full flex-col place-items-center justify-evenly gap-8">
-    <h2 class="flex flex-col items-center gap-2 sm:gap-4">
-      <!-- <Icon name="logomark" class="size-24 text-white md:size-32" /> -->
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-6xl"
-        data-aos="fade-up"
-      >
-        El Increíble Método,
-      </div>
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-8xl"
-        data-aos="fade-up"
-      >
-        Mamá que Factura.
-      </div>
-    </h2>
 
-    <!-- <div class="col-span-2"> -->
-    <div class="flex flex-col flex-wrap items-center gap-8 sm:col-span-2">
-      <CallToAction />
-      <Countdown class="fade-up" />
+  <div class="relative flex h-full flex-col sm:flex-row">
+    <div class="relative z-10 mb-4 w-full sm:hidden">
+      <Image
+        class="profile-image h-full object-cover"
+        src={foto}
+        alt="Hero picture"
+        loading="lazy"
+      />
+      <!-- <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent"></div> -->
+      <div class="absolute -inset-1 bg-gradient-to-t from-black to-transparent"></div>
+    </div>
+
+    <div
+      class="z-20 flex w-full flex-col items-center justify-center gap-6 px-4 text-center max-[640px]:-mt-52 sm:w-1/2"
+    >
+      <h2 class="mt-5 flex flex-col items-center">
+        <div
+          class="gradient-text font-extrabold tracking-tighter text-5xl xl:text-6xl"
+          data-aos="fade-up"
+          set:html={siteConfig.sections.hero.title}
+        />
+      </h2>
+
+      <div
+        class="gradient-text mt-5 w-3/4 font-extrabold leading-snug tracking-tighter text-lg sm:mt-4 sm:leading-relaxed sm:text-lg"
+        data-aos="fade-up"
+      >
+        <p class="leading-3 text-lg sm:text-lg" set:html={siteConfig.sections.hero.description} />
+      </div>
+    </div>
+
+    <div class="relative hidden h-full w-1/2 overflow-hidden sm:block">
+      <Image
+        class="profile-image h-full object-cover xl:h-[120%] 2xl:h-[135%]"
+        src={foto}
+        alt="Hero picture"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 z-20 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="absolute inset-0 z-20 bg-gradient-to-t from-black to-transparent"></div>
     </div>
   </div>
 </section>
+
+<div class="scroll-indicator sticky z-20 mx-auto mt-8 block sm:hidden"></div>
+
+<div
+  class="relative z-30 mx-auto mt-12 flex w-full flex-col items-center justify-center gap-4 sm:absolute sm:bottom-20 sm:right-1 sm:w-1/2 md:mt-0"
+>
+  <Countdown class="fade-up" />
+  <CallToAction class="call-to-action" />
+</div>
+
+<div class="scroll-indicator sticky z-20 mx-auto -mt-10 hidden sm:block"></div>
 <script>
   import AOS from 'aos';
   import 'aos/dist/aos.css';
   AOS.init({
-    duration: 750
+    duration: 1000,
+    easing: 'ease-in-out'
   });
+
+  let countdownTime = 60 * 60;
+  let timer: string | number | NodeJS.Timeout | undefined;
+
+  const startCountdown = () => {
+    timer = setInterval(() => {
+      if (countdownTime > 0) {
+        countdownTime--;
+      } else {
+        clearInterval(timer);
+      }
+    }, 1000);
+  };
 </script>
-<noscript>
-  <style>
-    #splash-bg-fallback {
-      display: block;
-    }
-  </style>
-</noscript>
+
 <style>
-  /* @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .scroll-indicator {
+    width: 0;
+    height: 0;
+    /* margin: -50px auto 0 auto; */
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 0;
+    border-top: 30px solid #ed4f90; /* Color del triángulo */
+    animation: bounce 2s infinite;
   }
 
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.5s ease forwards;
-  } */
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-15px);
+    }
+    60% {
+      transform: translateY(-7px);
+    }
+  }
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
     }
-
     100% {
       transform: translate3d(0, 30px, 0);
     }
@@ -79,19 +124,5 @@ const sizes = '(min-width: 640px) 42vw, 67vw';
 
   #astronaut {
     animation: float linear 2.5s infinite alternate;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #astronaut {
-      @apply animate-none;
-    }
-
-    :global(#starfield) {
-      @apply hidden;
-    }
-
-    #splash-bg-fallback {
-      @apply block;
-    }
   }
 </style>

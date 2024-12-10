@@ -1,43 +1,30 @@
 ---
 import CallToAction from './call-to-action.astro';
 import ProfileCard from './profile-card.astro';
+import Countdown from './countdown.astro';
+import { siteConfig } from '~/config/site.config';
 ---
 
-<div class="gradient grid gap-8 px-8 pb-8">
+<div class="gradient relative z-10 grid gap-8 px-8 pb-8">
   <div
-    class="gradient-text-2 text-center font-extrabold uppercase tracking-tighter text-3xl"
+    class="gradient-text text-center font-extrabold uppercase tracking-tighter text-3xl"
     data-aos="fade-up"
   >
-    ¿Quién Soy y por qué puedo apoyarte?
+    {siteConfig.sections.about.title}
   </div>
   <div class="flex justify-center gap-8 text-sm max-[752px]:flex-wrap">
     <ProfileCard />
     <div class="max-w-[600px] leading-tight">
-      <p class="mb-6 text-justify text-black" data-aos="fade-up">
-        ¡Hola! Soy Briyito Barrero, mamá y emprendedora apasionada. Aunque estudié ingeniería civil
-        y gerencia de proyectos, además de eso me capacite en finanzas y en liderazgo, mi dedicación
-        como mamá y ama de casa por varios años me llevó a buscar nuevas formas de generar ingresos
-        desde el hogar a través de negocios en línea. Después de muchas experiencias y aprendizajes,
-        descubrí las claves para una vida abundante. Ahora quiero compartir contigo estrategias y
-        herramientas para que también puedas lograr resultados en el mundo virtual. Por eso, creé
-        "Mamá que Factura", un método diseñado para mamás como tú que desean generar ingresos desde
-        casa y ser mamás presentes en la vida de sus niños.
-      </p>
-
-      <p class="mb-6 text-justify text-black" data-aos="fade-up">
-        Puedo ser tu guía en este viaje porque comprendo las exigencias de ser una mamá ama de casa,
-        profesional y emprendedora. He transitado por ese camino y entiendo los desafíos que
-        conlleva. Mi experiencia me ha enseñado valiosas lecciones que ahora puedo compartir
-        contigo, ayudándote a sortear obstáculos y alcanzar tus metas de manera más rápida y
-        efectiva. Con soluciones prácticas y específicas, te acompañaré paso a paso para que puedas
-        generar ingresos desde la comodidad del hogar y contribuir económicamente al hogar. Estoy
-        aquí para brindarte el apoyo que necesitas para construir una vida plena y exitosa como mamá
-        emprendedora.
-      </p>
+      <p
+        class="gradient-text mb-6 text-justify"
+        data-aos="fade-up"
+        set:html={siteConfig.sections.about.content}
+      />
     </div>
   </div>
 </div>
 <div class="gradient flex flex-col flex-wrap items-center gap-8 pb-14 sm:col-span-2">
+  <!-- <Countdown class="fade-up" /> -->
   <CallToAction />
 </div>
 <script>
@@ -49,6 +36,6 @@ import ProfileCard from './profile-card.astro';
 </script>
 <style>
   .gradient {
-    background-color: #b76e79;
+    background-color: transparent;
   }
 </style>
