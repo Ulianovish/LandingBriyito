@@ -16,7 +16,7 @@ export interface SiteConfig {
     };
     links: {
         whatsapp: string;
-        zapierWebhook: string;
+        registerWebhook: string;
     };
     classes: Array<{
         number: number;

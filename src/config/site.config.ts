@@ -23,7 +23,7 @@ export const siteConfig: SiteConfig = {
     // Enlaces importantes
     links: {
         whatsapp: 'https://chat.whatsapp.com/HgnvveWfduzKfNepLLxB01',
-        zapierWebhook: 'https://hooks.zapier.com/hooks/catch/20686036/25qrkto/'
+        registerWebhook: 'https://script.google.com/macros/s/AKfycbxYNKt7CLeck5Ln6VXdVRNe1go4JT788qKJmrgQNcspXP-y2iKljdxSSLMtehDcxnysGw/exec'
     },
 
     // Textos de las clases

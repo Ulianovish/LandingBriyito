@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # Wrangler files
 .wrangler/
+.vercel
+
+# Claude Code
+.claude/
