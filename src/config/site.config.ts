@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
                 },
                 {
                     question: '¿Qué pasa si no puedo asistir en vivo a la masterclass?',
-                    answer: 'Si te registras al grupo de WhatsApp recibirás recordatorios y, si confirmas, acceso a la grabación por tiempo limitado.'
+                    answer: 'Si te registras al grupo de WhatsApp recibirás recordatorios y, si confirmas, te coloco en una lista para la siguiente clase.'
                 }
             ]
         }
