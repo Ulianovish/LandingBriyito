@@ -21,6 +21,7 @@ export interface SiteConfig {
     classes: Array<{
         number: number;
         title: string;
+        subtitle: string;
         description: string;
         icon: string;
     }>;
@@ -36,6 +37,27 @@ export interface SiteConfig {
         intro: {
             description: string;
         };
+        targetAudience: {
+            title: string;
+            forYou: string[];
+            notForYou: string[];
+        };
+        testimonials: {
+            title: string;
+            items: Array<{
+                name: string;
+                role: string;
+                quote: string;
+                isPlaceholder?: boolean;
+            }>;
+        };
+        faq: {
+            title: string;
+            items: Array<{
+                question: string;
+                answer: string;
+            }>;
+        };
     };
     dates: {
         title: string;
@@ -43,15 +65,18 @@ export interface SiteConfig {
     };
     ui: {
         ctaButton: string;
+        ctaSubtext: string;
         formTitle: string;
         formLabels: {
             name: string;
             email: string;
+            whatsapp: string;
             submit: string;
         };
         placeholders: {
             name: string;
             email: string;
+            whatsapp: string;
         };
     };
 }

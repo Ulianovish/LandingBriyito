@@ -1,0 +1,83 @@
+---
+import { siteConfig } from '~/config/site.config';
+---
+
+<section class="gradient relative z-10 px-8 py-14">
+  <div
+    class="gradient-text mx-auto mb-10 max-w-3xl text-center font-extrabold uppercase tracking-tighter text-3xl"
+    data-aos="fade-up"
+  >
+    {siteConfig.sections.faq.title}
+  </div>
+
+  <div class="mx-auto max-w-3xl space-y-4">
+    {
+      siteConfig.sections.faq.items.map((item) => (
+        <details class="faq-item" data-aos="fade-up">
+          <summary class="faq-question">
+            <span>{item.question}</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-answer">{item.answer}</div>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+  AOS.init({ duration: 750 });
+</script>
+
+<style>
+  .gradient {
+    background-color: transparent;
+  }
+  .faq-item {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(236, 72, 153, 0.15);
+    overflow: hidden;
+    color: #1f1f1f;
+    box-shadow: 0 4px 18px rgba(168, 85, 247, 0.08);
+    transition: all 0.2s ease;
+  }
+  .faq-item:hover {
+    border-color: rgba(236, 72, 153, 0.4);
+    box-shadow: 0 8px 24px rgba(236, 72, 153, 0.12);
+  }
+  .faq-item[open] {
+    border-color: rgba(168, 85, 247, 0.45);
+  }
+  .faq-answer {
+    color: #4b5563;
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.2s ease;
+    color: #ec4899;
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+</style>

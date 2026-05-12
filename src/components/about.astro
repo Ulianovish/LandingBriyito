@@ -14,9 +14,9 @@ import { siteConfig } from '~/config/site.config';
   </div>
   <div class="flex justify-center gap-8 text-sm max-[752px]:flex-wrap">
     <ProfileCard />
-    <div class="max-w-[600px] leading-tight">
+    <div class="max-w-[600px] leading-relaxed">
       <p
-        class="gradient-text mb-6 text-justify"
+        class="about-text mb-6 text-justify"
         data-aos="fade-up"
         set:html={siteConfig.sections.about.content}
       />
@@ -37,5 +37,18 @@ import { siteConfig } from '~/config/site.config';
 <style>
   .gradient {
     background-color: transparent;
+  }
+  .about-text {
+    color: #1f1f1f !important;
+    background: none !important;
+    -webkit-text-fill-color: #1f1f1f !important;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .about-text :global(strong) {
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
+    font-weight: 800;
   }
 </style>

@@ -1,4 +1,20 @@
 /* TODO: consider creating <Button> and <GradientText> components */
+html[data-theme='light'] body {
+  background-color: #fefaf7;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(251, 207, 232, 0.45), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(254, 215, 170, 0.4), transparent 55%),
+    radial-gradient(ellipse at center, rgba(243, 232, 255, 0.35), transparent 70%);
+  background-attachment: fixed;
+  color: #1f1f1f;
+}
+
+.gradient-text-2 {
+  color: #1f1f1f !important;
+  background: none !important;
+  -webkit-text-fill-color: #1f1f1f !important;
+}
+
 a,
 .btn {
   @apply transition-colors duration-200;
