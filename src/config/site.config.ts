@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
 
     // Enlaces importantes
     links: {
-        whatsapp: 'https://chat.whatsapp.com/HgnvveWfduzKfNepLLxB01',
+        whatsapp: 'https://chat.whatsapp.com/GqFsB2bbQOnBDCPrdIG8h0?mode=gi_t',
         registerWebhook: 'https://script.google.com/macros/s/AKfycbxYNKt7CLeck5Ln6VXdVRNe1go4JT788qKJmrgQNcspXP-y2iKljdxSSLMtehDcxnysGw/exec'
     },
 
@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
                 },
                 {
                     question: '¿Qué pasa si no puedo asistir en vivo a la masterclass?',
-                    answer: 'Si te registras al grupo de WhatsApp recibirás recordatorios y, si confirmas, acceso a la grabación por tiempo limitado.'
+                    answer: 'Si te registras al grupo de WhatsApp recibirás recordatorios y, si confirmas, te coloco en una lista para la siguiente clase.'
                 }
             ]
         }
