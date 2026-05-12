@@ -5,15 +5,16 @@ import { siteConfig } from '~/config/site.config';
 ---
 
 <div
-  class="profile-card grid max-h-[400px] w-2/3 max-w-64 rounded-xl bg-[#dd7f8d] bg-opacity-60 sm:w-10/12"
+  class="profile-card grid max-h-[400px] w-2/3 max-w-64 rounded-xl bg-white sm:w-10/12"
   data-aos="fade-up"
+  style="box-shadow: 0 12px 36px rgba(168, 85, 247, 0.18); border: 1px solid rgba(236, 72, 153, 0.18);"
 >
   <Image class="profile-image ml-[-6%] rounded-full" src={foto} alt="Profile picture" />
   <div class="profile-info flex flex-col items-center p-4">
-    <h1 class="gradient-text-2 mb-2 font-bold text-xl">
+    <h1 class="mb-2 font-bold text-xl" style="color: #1f1f1f;">
       {siteConfig.author}
     </h1>
-    <p class="gradient-text-2 text-sm">{siteConfig.authorSubtitle}</p>
+    <p class="text-sm" style="color: #ec4899; font-weight: 600;">{siteConfig.authorSubtitle}</p>
   </div>
 </div>
 

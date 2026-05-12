@@ -1,0 +1,82 @@
+---
+import { siteConfig } from '~/config/site.config';
+---
+
+<section class="gradient relative z-10 px-8 py-14">
+  <div
+    class="gradient-text mx-auto mb-10 max-w-3xl text-center font-extrabold uppercase tracking-tighter text-3xl"
+    data-aos="fade-up"
+  >
+    {siteConfig.sections.targetAudience.title}
+  </div>
+
+  <div class="mx-auto grid max-w-4xl gap-8 sm:grid-cols-2">
+    <div class="audience-card audience-yes" data-aos="fade-up">
+      <h3 class="mb-4 font-extrabold uppercase text-xl">✅ Sí es para ti si...</h3>
+      <ul class="space-y-3">
+        {
+          siteConfig.sections.targetAudience.forYou.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 text-green-400">✓</span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="audience-card audience-no" data-aos="fade-up">
+      <h3 class="mb-4 font-extrabold uppercase text-xl">❌ NO es para ti si...</h3>
+      <ul class="space-y-3">
+        {
+          siteConfig.sections.targetAudience.notForYou.map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 text-red-400">✕</span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+  AOS.init({ duration: 750 });
+</script>
+
+<style>
+  .gradient {
+    background-color: transparent;
+  }
+  .audience-card {
+    padding: 1.75rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    color: #1f1f1f;
+    box-shadow: 0 8px 28px rgba(168, 85, 247, 0.1);
+    transition: all 0.2s ease;
+  }
+  .audience-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(236, 72, 153, 0.18);
+  }
+  .audience-yes {
+    border: 2px solid rgba(168, 85, 247, 0.55);
+  }
+  .audience-no {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .audience-card h3 {
+    color: #1f1f1f;
+  }
+  .audience-card ul li span:last-child {
+    color: #374151;
+  }
+  .audience-card ul li {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+</style>

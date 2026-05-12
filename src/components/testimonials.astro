@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '~/config/site.config';
+---
+
+<section class="gradient relative z-10 px-8 py-14">
+  <div
+    class="gradient-text mx-auto mb-10 max-w-3xl text-center font-extrabold uppercase tracking-tighter text-3xl"
+    data-aos="fade-up"
+  >
+    {siteConfig.sections.testimonials.title}
+  </div>
+
+  <div
+    class="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      siteConfig.sections.testimonials.items.map((t) => (
+        <article class="testimonial-card" data-aos="fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"{t.quote}"</p>
+          <div class="testimonial-name">{t.name}</div>
+          <div class="testimonial-role">{t.role}</div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+  AOS.init({ duration: 750 });
+</script>
+
+<style>
+  .gradient {
+    background-color: transparent;
+  }
+  .testimonial-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(236, 72, 153, 0.15);
+    color: #1f1f1f;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 28px rgba(168, 85, 247, 0.1);
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(236, 72, 153, 0.4);
+    box-shadow: 0 16px 40px rgba(236, 72, 153, 0.18);
+  }
+  .testimonial-stars {
+    margin-bottom: 0.6rem;
+    color: #facc15;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .testimonial-quote {
+    margin: 0 0 1rem;
+    font-style: italic;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: #374151;
+  }
+  .testimonial-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #1f1f1f;
+  }
+  .testimonial-role {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.15rem;
+  }
+</style>

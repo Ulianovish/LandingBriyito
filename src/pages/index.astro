@@ -3,9 +3,12 @@ import '@fontsource-variable/inter';
 import About from '~/components/about.astro';
 import CallToAction from '~/components/call-to-action.astro';
 import Classes from '~/components/classes.astro';
+import Faq from '~/components/faq.astro';
 import Intro from '~/components/intro.astro';
 import Splash from '~/components/splash.astro';
 import Starfield from '~/components/starfield.astro';
+import TargetAudience from '~/components/target-audience.astro';
+import Testimonials from '~/components/testimonials.astro';
 import '~/styles/index.css';
 
 const { generator, site } = Astro;
@@ -14,7 +17,7 @@ const description = 'Aprende El Increíble Método Mamá Que Factura';
 ---
 
 <!doctype html>
-<html lang="es" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+<html lang="es" class="h-full motion-safe:scroll-smooth" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -32,22 +35,41 @@ const description = 'Aprende El Increíble Método Mamá Que Factura';
     <meta property="og:url" content={site} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="facebook-domain-verification" content="6ka7t2u3jg6z23trqaveqgr7inykz6" />
+
+    <!-- Meta Pixel Code -->
+    <script is:inline>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '7974826735928388');
+      fbq('track', 'PageView');
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=7974826735928388&ev=PageView&noscript=1"
+      /></noscript
+    >
+    <!-- End Meta Pixel Code -->
+
     <!-- initialize theme -->
     <script is:inline>
-      const themeSaved = localStorage.getItem('theme');
-
-      if (themeSaved) {
-        document.documentElement.dataset.theme = themeSaved;
-      } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
-      }
-
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-        if (!localStorage.getItem('theme')) {
-          document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
-        }
-      });
+      document.documentElement.dataset.theme = 'light';
     </script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
@@ -58,6 +80,9 @@ const description = 'Aprende El Increíble Método Mamá Que Factura';
     <Splash />
     <!-- <Intro /> -->
     <Classes />
+    <TargetAudience />
+    <Testimonials />
+    <Faq />
     <About />
   </body>
 </html>
@@ -78,12 +103,3 @@ const description = 'Aprende El Increíble Método Mamá Que Factura';
     animation: fadeUp 0.5s ease forwards;
   }
 </style>
-<!-- Meta Pixel Code -->
-<noscript
-  ><img
-    height="1"
-    width="1"
-    style="display:none"
-    src="https://www.facebook.com/tr?id=7974826735928388&ev=PageView&noscript=1"
-  /></noscript
->

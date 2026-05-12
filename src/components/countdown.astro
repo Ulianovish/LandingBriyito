@@ -2,24 +2,24 @@
 import { siteConfig } from '~/config/site.config';
 ---
 
-<div class="middle" data-aos="fade-up">
-  <h1 class="gradient-text font-extrabold tracking-tighter text-3xl">{siteConfig.dates.title}</h1>
-  <div class="time font-semibold uppercase">
-    <span class="gradient-text">
-      <div id="d">00</div>
-      Días
+<div class="countdown-wrapper" data-aos="fade-up">
+  <h1 class="countdown-title font-extrabold tracking-tight text-2xl">{siteConfig.dates.title}</h1>
+  <div class="time font-bold uppercase">
+    <span>
+      <div id="d" class="countdown-number">00</div>
+      <span class="countdown-label">Días</span>
     </span>
-    <span class="gradient-text">
-      <div id="h">00</div>
-      Horas
+    <span>
+      <div id="h" class="countdown-number">00</div>
+      <span class="countdown-label">Horas</span>
     </span>
-    <span class="gradient-text">
-      <div id="m">00</div>
-      Minutos
+    <span>
+      <div id="m" class="countdown-number">00</div>
+      <span class="countdown-label">Minutos</span>
     </span>
-    <span class="gradient-text">
-      <div id="s">00</div>
-      Segundos
+    <span>
+      <div id="s" class="countdown-number">00</div>
+      <span class="countdown-label">Segundos</span>
     </span>
   </div>
 </div>
@@ -82,37 +82,69 @@ import { siteConfig } from '~/config/site.config';
   initCountdown();
 </script>
 <style>
-  .middle {
+  .countdown-wrapper {
     text-align: center;
     user-select: none;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(236, 72, 153, 0.18);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.18);
+  }
+
+  .countdown-title {
+    color: #1f1f1f;
+    margin: 0 0 0.6rem;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .time {
-    color: #d99c3b;
+    color: #1f1f1f;
     text-transform: uppercase;
     display: flex;
     justify-content: center;
+    gap: 0.5rem;
   }
 
-  .time span {
-    padding: 0 14px;
-    font-size: 0.8rem;
+  .time > span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
   }
 
-  .time span div {
-    font-size: 1.8rem;
+  .countdown-number {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #ec4899;
+    line-height: 1;
+  }
+
+  .countdown-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
   }
 
   @media (max-width: 740px) {
-    .label {
-      font-size: 1.7rem;
+    .countdown-wrapper {
+      padding: 0.85rem 1rem;
     }
-    .time span {
-      padding: 0 16px;
-      font-size: 0.6rem;
+    .countdown-title {
+      font-size: 1.25rem;
     }
-    .time span div {
+    .countdown-number {
       font-size: 2rem;
+    }
+    .countdown-label {
+      font-size: 0.65rem;
     }
   }
 </style>

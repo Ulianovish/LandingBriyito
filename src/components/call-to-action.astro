@@ -5,7 +5,7 @@ import Modal from './modal.astro';
 import { siteConfig } from '~/config/site.config';
 ---
 
-<div data-aos="fade-up">
+<div data-aos="fade-up" class="cta-wrapper">
   <button
     onclick="openModal()"
     class="button-call gradient-text relative z-10 font-bold uppercase transition duration-300 ease-in-out hover:scale-110"
@@ -14,6 +14,7 @@ import { siteConfig } from '~/config/site.config';
     {siteConfig.ui.ctaButton}
     <div class="button-call-2 opacity-0"></div>
   </button>
+  <p class="cta-subtext">{siteConfig.ui.ctaSubtext}</p>
   <Modal />
 </div>
 <!-- <div data-aos="fade-up">
@@ -33,29 +34,23 @@ import { siteConfig } from '~/config/site.config';
   AOS.init({
     duration: 750
   });
-  !(function (f, b, e, v, n, t, s) {
-    if (f.fbq) return;
-    n = f.fbq = function () {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-    n.push = n.loaded = !0;
-    n.version = '2.0';
-    n.queue = [];
-    t = b.createElement(e);
-    t.async = !0;
-    t.src = v;
-    s = b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t, s);
-  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '7974826735928388');
-  fbq('track', 'PageView');
-
-  // document.getElementById('whatsappLink').addEventListener('click', function () {
-  //   fbq('track', 'CompleteRegistration');
-  // });
 </script>
 
 <style>
+  .cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cta-subtext {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    font-weight: 500;
+    max-width: 380px;
+    line-height: 1.4;
+  }
   .button-call,
   .button-call-2 {
     width: 370px;
