@@ -14,9 +14,14 @@ export interface SiteConfig {
         };
         facebookVerification: string;
     };
+    analytics: {
+        metaPixelId: string;
+    };
     links: {
         whatsapp: string;
         registerWebhook: string;
+        circleWhatsapp: string;
+        circleWebhook: string;
     };
     classes: Array<{
         number: number;
@@ -77,6 +82,45 @@ export interface SiteConfig {
             name: string;
             email: string;
             whatsapp: string;
+        };
+        errorMessage: string;
+    };
+    circle: {
+        seo: {
+            title: string;
+            description: string;
+        };
+        hero: {
+            title: string;
+            quote: string;
+            description: string;
+        };
+        blocksTitle: string;
+        blocks: Array<{
+            title: string;
+            description: string;
+            icon: string;
+        }>;
+        howItWorksTitle: string;
+        howItWorks: string[];
+        ui: {
+            formTitle: string;
+            formIntro: string;
+            formLabels: {
+                name: string;
+                email: string;
+                whatsapp: string;
+                submit: string;
+            };
+            placeholders: {
+                name: string;
+                email: string;
+                whatsapp: string;
+            };
+            errorMessage: string;
+            landingLink: string;
+            heroCta: string;
+            backLink: string;
         };
     };
 }
