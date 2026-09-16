@@ -153,7 +153,7 @@ export const siteConfig: SiteConfig = {
     dates: {
         title: 'La Masterclass comienza en',
         // Hora de Colombia (UTC-5): mantén el offset para que todas vean la misma cuenta regresiva
-        masterclass: '2026-10-01T21:00:00-05:00'
+        masterclass: '2026-10-01T20:00:00-05:00'
     },
 
     // Textos de botones y formularios

@@ -1,5 +1,8 @@
 ---
 import { siteConfig } from '~/config/site.config';
+import { formatMasterclassDate } from '~/utils/countdown';
+
+const masterclassLabel = formatMasterclassDate(new Date(siteConfig.dates.masterclass));
 ---
 
 <div class="countdown-wrapper" data-aos="fade-up">
@@ -22,6 +25,7 @@ import { siteConfig } from '~/config/site.config';
       <span class="countdown-label">Segundos</span>
     </span>
   </div>
+  <p class="countdown-date">{masterclassLabel}</p>
 </div>
 <script>
   import AOS from 'aos';
@@ -120,6 +124,14 @@ import { siteConfig } from '~/config/site.config';
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-top: 0.25rem;
+  }
+
+  .countdown-date {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: none;
   }
 
   @media (max-width: 740px) {

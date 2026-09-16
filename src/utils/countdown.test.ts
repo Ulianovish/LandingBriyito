@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { siteConfig } from '../config/site.config';
-import { getCountdown } from './countdown';
+import { formatMasterclassDate, getCountdown } from './countdown';
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -40,5 +40,32 @@ describe('siteConfig.dates.masterclass', () => {
   test('includes a UTC offset so every visitor counts down to the same instant', () => {
     expect(siteConfig.dates.masterclass).toMatch(/(Z|[+-]\d{2}:\d{2})$/);
     expect(Number.isNaN(new Date(siteConfig.dates.masterclass).getTime())).toBe(false);
+  });
+});
+
+describe('formatMasterclassDate', () => {
+  test('writes the evening start date in Colombia time', () => {
+    expect(formatMasterclassDate(new Date('2026-10-01T20:00:00-05:00'))).toBe(
+      'Jueves 1 de octubre · 8:00 p.m. (hora de Colombia)'
+    );
+  });
+
+  test('uses a.m. for morning classes', () => {
+    expect(formatMasterclassDate(new Date('2026-10-03T09:30:00-05:00'))).toBe(
+      'Sábado 3 de octubre · 9:30 a.m. (hora de Colombia)'
+    );
+  });
+
+  test('writes noon as 12:00 p.m.', () => {
+    expect(formatMasterclassDate(new Date('2026-10-01T12:00:00-05:00'))).toBe(
+      'Jueves 1 de octubre · 12:00 p.m. (hora de Colombia)'
+    );
+  });
+
+  test('keeps the Colombian date when the instant is already the next day in UTC', () => {
+    // 8:00 p.m. en Colombia es la 1:00 a.m. del día siguiente en UTC
+    expect(formatMasterclassDate(new Date('2026-10-02T01:00:00Z'))).toBe(
+      'Jueves 1 de octubre · 8:00 p.m. (hora de Colombia)'
+    );
   });
 });
