@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
     links: {
         whatsapp: 'https://chat.whatsapp.com/GqFsB2bbQOnBDCPrdIG8h0?mode=gi_t',
         registerWebhook: 'https://script.google.com/macros/s/AKfycbxYNKt7CLeck5Ln6VXdVRNe1go4JT788qKJmrgQNcspXP-y2iKljdxSSLMtehDcxnysGw/exec',
-        circleWhatsapp: 'https://chat.whatsapp.com/DrgkquIABsyGpIb5qOJlHd',
+        circleWhatsapp: 'https://chat.whatsapp.com/DrgkquIABsyGpIb5qOJlHd?mode=gi_t',
         circleWebhook: 'https://script.google.com/macros/s/AKfycbyg5-E_I71ndxrjyNxc0d7WLTRvW4w_Xe6bKz3eMnIDnHzxAq43PqeEsvsv0AE9t2so/exec'
     },
 
