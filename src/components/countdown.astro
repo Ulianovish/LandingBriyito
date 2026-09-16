@@ -27,6 +27,7 @@ import { siteConfig } from '~/config/site.config';
   import AOS from 'aos';
   import 'aos/dist/aos.css';
   import { siteConfig } from '~/config/site.config';
+  import { getCountdown } from '~/utils/countdown';
   AOS.init({
     duration: 750
   });
@@ -34,47 +35,35 @@ import { siteConfig } from '~/config/site.config';
   const h = document.getElementById('h');
   const m = document.getElementById('m');
   const s = document.getElementById('s');
+  const masterclassDate = new Date(siteConfig.dates.masterclass);
 
-  function getTrueNumber(num: any) {
-    return num < 10 ? '0' + num : num;
-  }
-
-  function calculateRemainingTime() {
-    const comingYear = new Date().getFullYear() + 1;
-    const comingDate = new Date(siteConfig.dates.masterclass);
-
-    const now = new Date();
-    // console.log(now);
-    // console.log(comingDate);
-    const remainingTime = comingDate.getTime() - now.getTime();
-    const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((remainingTime % (1000 * 60)) / 1000);
+  function renderCountdown() {
+    const countdown = getCountdown(masterclassDate, new Date());
 
     if (d) {
-      d.innerHTML = getTrueNumber(days);
+      d.innerHTML = countdown.days;
     }
     if (h) {
-      h.innerHTML = getTrueNumber(hours);
+      h.innerHTML = countdown.hours;
     }
     if (m) {
-      m.innerHTML = getTrueNumber(mins);
+      m.innerHTML = countdown.minutes;
     }
     if (s) {
-      s.innerHTML = getTrueNumber(secs);
+      s.innerHTML = countdown.seconds;
     }
 
-    return remainingTime;
+    return countdown.remainingMs;
   }
 
   function initCountdown() {
-    const interval = setInterval(() => {
-      const remainingTimeInMs = calculateRemainingTime();
+    if (renderCountdown() === 0) {
+      return;
+    }
 
-      if (remainingTimeInMs <= 1000) {
+    const interval = setInterval(() => {
+      if (renderCountdown() === 0) {
         clearInterval(interval);
-        initCountdown();
       }
     }, 1000);
   }
