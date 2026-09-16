@@ -1,105 +1,35 @@
 ---
-import '@fontsource-variable/inter';
 import About from '~/components/about.astro';
-import CallToAction from '~/components/call-to-action.astro';
 import Classes from '~/components/classes.astro';
 import Faq from '~/components/faq.astro';
-import Intro from '~/components/intro.astro';
+import Modal from '~/components/modal.astro';
 import Splash from '~/components/splash.astro';
-import Starfield from '~/components/starfield.astro';
 import TargetAudience from '~/components/target-audience.astro';
 import Testimonials from '~/components/testimonials.astro';
-import '~/styles/index.css';
+import { siteConfig } from '~/config/site.config';
+import BaseLayout from '~/layouts/base.astro';
 
-const { generator, site } = Astro;
-// const image = new URL('social.jpg', site);
 const description = 'Aprende El Increíble Método Mamá Que Factura';
 ---
 
-<!doctype html>
-<html lang="es" class="h-full motion-safe:scroll-smooth" data-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="generator" content={generator} />
+<BaseLayout title="Mamá Que Factura" description={description} ogTitle="Mama Que Factura">
+  <!-- <Starfield /> -->
+  <Splash />
+  <!-- <Intro /> -->
+  <Classes />
+  <TargetAudience />
+  <Testimonials />
+  <Faq />
+  <About />
 
-    <title>Mamá Que Factura</title>
-    <meta name="description" content={description} />
-
-    <!-- social media -->
-    <meta property="og:title" content="Mama Que Factura" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content={description} />
-    <!-- <meta property="og:image" content={image} /> -->
-    <meta property="og:url" content={site} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="facebook-domain-verification" content="6ka7t2u3jg6z23trqaveqgr7inykz6" />
-
-    <!-- Meta Pixel Code -->
-    <script is:inline>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '7974826735928388');
-      fbq('track', 'PageView');
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display:none"
-        src="https://www.facebook.com/tr?id=7974826735928388&ev=PageView&noscript=1"
-      /></noscript
+  <p class="relative z-10 pb-12 text-center">
+    <a
+      href="/circulo-de-crecimiento"
+      class="font-semibold text-pink-600 underline underline-offset-4 transition text-sm hover:text-pink-700"
     >
-    <!-- End Meta Pixel Code -->
+      {siteConfig.circle.ui.landingLink}
+    </a>
+  </p>
 
-    <!-- initialize theme -->
-    <script is:inline>
-      document.documentElement.dataset.theme = 'light';
-    </script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  </head>
-  <body
-    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
-  >
-    <!-- <Starfield /> -->
-    <Splash />
-    <!-- <Intro /> -->
-    <Classes />
-    <TargetAudience />
-    <Testimonials />
-    <Faq />
-    <About />
-  </body>
-</html>
-<style is:global>
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.5s ease forwards;
-  }
-</style>
+  <Modal />
+</BaseLayout>

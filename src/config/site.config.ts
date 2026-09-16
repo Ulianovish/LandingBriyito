@@ -20,10 +20,17 @@ export const siteConfig: SiteConfig = {
         facebookVerification: '6ka7t2u3jg6z23trqaveqgr7inykz6'
     },
 
+    // Identificador del Meta Pixel
+    analytics: {
+        metaPixelId: '7974826735928388'
+    },
+
     // Enlaces importantes
     links: {
         whatsapp: 'https://chat.whatsapp.com/GqFsB2bbQOnBDCPrdIG8h0?mode=gi_t',
-        registerWebhook: 'https://script.google.com/macros/s/AKfycbxYNKt7CLeck5Ln6VXdVRNe1go4JT788qKJmrgQNcspXP-y2iKljdxSSLMtehDcxnysGw/exec'
+        registerWebhook: 'https://script.google.com/macros/s/AKfycbxYNKt7CLeck5Ln6VXdVRNe1go4JT788qKJmrgQNcspXP-y2iKljdxSSLMtehDcxnysGw/exec',
+        circleWhatsapp: 'https://chat.whatsapp.com/DrgkquIABsyGpIb5qOJlHd',
+        circleWebhook: 'https://script.google.com/macros/s/AKfycbyg5-E_I71ndxrjyNxc0d7WLTRvW4w_Xe6bKz3eMnIDnHzxAq43PqeEsvsv0AE9t2so/exec'
     },
 
     // Textos de las clases
@@ -145,7 +152,8 @@ export const siteConfig: SiteConfig = {
     // Configuración de fechas
     dates: {
         title: 'La Masterclass comienza en',
-        masterclass: '2026-05-26T21:00:00'
+        // Hora de Colombia (UTC-5): mantén el offset para que todas vean la misma cuenta regresiva
+        masterclass: '2026-11-01T21:00:00-05:00'
     },
 
     // Textos de botones y formularios
@@ -163,6 +171,70 @@ export const siteConfig: SiteConfig = {
             name: 'Tu nombre completo',
             email: 'tu@email.com',
             whatsapp: '+57 300 000 0000'
+        },
+        errorMessage: 'No pudimos guardar tu registro. Inténtalo otra vez en un momento.'
+    },
+
+    // Página del Círculo de Crecimiento
+    circle: {
+        seo: {
+            title: 'Círculo de Crecimiento | Mamá Que Factura',
+            description: 'Un espacio gratuito de mentalidad y marca personal para emprender por internet, con clases en vivo.'
+        },
+        hero: {
+            title: 'Círculo de <br /> Crecimiento.',
+            quote: 'No te preguntes si tienes motivación. Pregúntate si tiene sentido crecer internamente para poder emprender.',
+            description: `Un espacio gratuito para crecer por dentro y poder emprender por internet.<br /><br />
+                Nos vemos en clases en vivo, trabajamos tu mentalidad y tu marca personal, y cada clase
+                deja una tarea. Acá no se trata de motivación, se trata de compromiso.`
+        },
+        blocksTitle: 'Qué vas a encontrar',
+        blocks: [
+            {
+                title: 'PRINCIPIOS',
+                description: 'Principios para elevar tu nivel de conciencia, empezando por el más poderoso: todo es percepción.',
+                icon: 'learn'
+            },
+            {
+                title: 'MARCA PERSONAL',
+                description: 'Los 5 pasos de la marca personal, desde tus dones y talentos hasta el apalancamiento.',
+                icon: 'store'
+            },
+            {
+                title: 'REPUTACIÓN',
+                description: 'Tu reputación es tu marca. Qué flores quieres en tu ramo y con quién te asocias.',
+                icon: 'trophy'
+            },
+            {
+                title: 'COMPROMISO',
+                description: 'Tareas entre clases y un contexto de personas que van por el mismo camino.',
+                icon: 'rocket'
+            }
+        ],
+        howItWorksTitle: 'Cómo funciona',
+        howItWorks: [
+            'Las clases son en vivo y gratuitas.',
+            'Te comprometes a asistir y a hacer la tarea.',
+            'La fecha y la hora se avisan en el grupo de WhatsApp.'
+        ],
+        ui: {
+            formTitle: 'Únete al Círculo',
+            formIntro: 'Déjame tus datos y te llevo al grupo de WhatsApp.',
+            formLabels: {
+                name: 'Nombre',
+                email: 'Email',
+                whatsapp: 'WhatsApp (con indicativo país)',
+                submit: 'QUIERO ENTRAR AL CÍRCULO'
+            },
+            placeholders: {
+                name: 'Tu nombre completo',
+                email: 'tu@email.com',
+                whatsapp: '+57 300 000 0000'
+            },
+            errorMessage: 'No pudimos guardar tu registro. Inténtalo otra vez en un momento.',
+            landingLink: '¿Quieres trabajar tu mentalidad? Entra al Círculo de Crecimiento',
+            heroCta: 'Quiero entrar',
+            backLink: 'Volver a la masterclass Mamá Que Factura'
         }
     }
 };

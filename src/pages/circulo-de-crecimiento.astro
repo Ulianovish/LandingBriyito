@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import learn from '~/assets/learn.svg';
+import rocket from '~/assets/rocket.svg';
+import store from '~/assets/store.svg';
+import trophy from '~/assets/trophy.svg';
+import RegistrationForm from '~/components/registration-form.astro';
+import { siteConfig } from '~/config/site.config';
+import BaseLayout from '~/layouts/base.astro';
+
+const icons = { learn, store, rocket, trophy };
+const { circle, links } = siteConfig;
+---
+
+<BaseLayout title={circle.seo.title} description={circle.seo.description}>
+  <main class="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-16 px-6 py-16">
+    <section class="flex flex-col items-center gap-6 text-center">
+      <h1
+        class="gradient-text font-extrabold tracking-tighter text-4xl sm:text-5xl"
+        set:html={circle.hero.title}
+      />
+      <p class="max-w-2xl font-extrabold leading-snug text-pink-600 text-lg">
+        «{circle.hero.quote}»
+      </p>
+      <p class="hero-description max-w-2xl leading-relaxed" set:html={circle.hero.description} />
+      <a href="#registro" class="cta">{circle.ui.heroCta}</a>
+    </section>
+
+    <section class="flex w-full flex-col items-center gap-8">
+      <h2 class="gradient-text text-center font-extrabold uppercase tracking-tighter text-3xl">
+        {circle.blocksTitle}
+      </h2>
+      <div class="inline-flex max-w-[1100px] flex-wrap justify-center gap-4 min-[900px]:gap-8">
+        {
+          circle.blocks.map((block) => (
+            <div class="card w-[352px] max-w-full">
+              <div class="card-header">
+                <div class="img-container">
+                  <Image src={icons[block.icon as keyof typeof icons]} alt={block.title} />
+                </div>
+                <p class="card-label">{block.title}</p>
+              </div>
+              <p class="card-description">{block.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="flex flex-col items-center gap-6 text-center">
+      <h2 class="gradient-text font-extrabold uppercase tracking-tighter text-3xl">
+        {circle.howItWorksTitle}
+      </h2>
+      <ul class="how-list">
+        {circle.howItWorks.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="registro" class="w-full max-w-md scroll-mt-10">
+      <div class="form-card">
+        <h2 class="gradient-text text-center font-extrabold uppercase tracking-tighter text-2xl">
+          {circle.ui.formTitle}
+        </h2>
+        <p class="mt-2 text-center text-gray-300 text-sm">{circle.ui.formIntro}</p>
+        <div class="mt-5">
+          <RegistrationForm
+            webhook={links.circleWebhook}
+            whatsappUrl={links.circleWhatsapp}
+            origen="circulo"
+            contentName="Circulo de Crecimiento - Registro"
+            labels={circle.ui.formLabels}
+            placeholders={circle.ui.placeholders}
+            errorMessage={circle.ui.errorMessage}
+            askWhatsapp
+          />
+        </div>
+      </div>
+    </section>
+
+    <a href="/" class="back-link">{circle.ui.backLink}</a>
+  </main>
+</BaseLayout>
+
+<style>
+  .hero-description {
+    color: #4b5563;
+  }
+
+  .cta {
+    border-radius: 9999px;
+    background-image: linear-gradient(to right, #ec4899, #9333ea);
+    color: #ffffff;
+    padding: 0.85rem 1.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.25);
+    transition: transform 150ms ease;
+  }
+
+  .cta:hover {
+    transform: scale(1.04);
+    color: #ffffff;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(236, 72, 153, 0.15);
+    box-shadow: 0 8px 28px rgba(168, 85, 247, 0.1);
+    transition: all 200ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(236, 72, 153, 0.4);
+    box-shadow: 0 16px 40px rgba(236, 72, 153, 0.18);
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .img-container {
+    height: 3.5rem;
+    width: 3.5rem;
+    flex-shrink: 0;
+  }
+
+  .img-container img {
+    width: 100%;
+  }
+
+  .card-label {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #1f1f1f;
+    font-size: 1.05rem;
+  }
+
+  .card-description {
+    color: #4b5563;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .how-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: left;
+    color: #4b5563;
+    background: #ffffff;
+    border: 1px solid rgba(236, 72, 153, 0.15);
+    border-radius: 1rem;
+    box-shadow: 0 8px 28px rgba(168, 85, 247, 0.1);
+    padding: 1.25rem 1.75rem;
+  }
+
+  .how-list li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+
+  .how-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #ec4899;
+    font-weight: 800;
+  }
+
+  .form-card {
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-image: linear-gradient(#101014, #101014), linear-gradient(to right, #ec4899, #9333ea);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 16px 40px rgba(168, 85, 247, 0.18);
+  }
+
+  .back-link {
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
