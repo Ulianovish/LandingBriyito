@@ -76,7 +76,7 @@ export const siteConfig: SiteConfig = {
         },
         about: {
             title: '¿Quién Soy y por qué puedo apoyarte?',
-            content: `Soy <strong>Briyito Barrero</strong>, profesional en ingeniería, gerente de proyectos enfocada en finanzas, emprendedora, coach de mamás y mi rol más importante: <strong>mamá de dos hijas</strong>.<br /><br />
+            content: `Soy una mamá empoderada. Soy emprendedora. Soy una guerrera. Soy muy amorosa y una gran líder. Mi profesión es la ingeniería y mi especialidad es la gerencia de proyectos. Pero mi profesión más importante es ser <strong>mamá de dos hijas</strong> y coach de mamás. Me llamo <strong>Briyito Barrero</strong>.<br /><br />
                 Mi dedicación como mamá me llevó a buscar nuevas formas de generar ingresos desde casa para ser una mamá más presente en la vida de mis hijas. Después de varios desafíos y experiencias descubrí las claves para una vida exitosa, y ahora quiero compartir contigo la estrategia y las herramientas para que tú también logres resultados en el mundo digital.<br /><br />
                 Por eso creé <strong>El Método Mamá Que Factura</strong>, especialmente para mamás profesionales que desean generar ingresos desde casa y ser mamás presentes en la vida de sus hijos.<br /><br />
                 Puedo ayudarte porque comprendo las exigencias de ser profesional y mamá al mismo tiempo. Te acompañaré paso a paso para que comprendas el mundo digital y puedas romper las barreras que te están limitando.`
@@ -139,7 +139,7 @@ export const siteConfig: SiteConfig = {
                 },
                 {
                     question: '¿Necesito invertir dinero al inicio?',
-                    answer: 'En la masterclass te explico con transparencia las inversiones reales que se requieren según el modelo de tienda que elijas. No hay sorpresas. La masterclass en sí es 100% GRATIS.'
+                    answer: 'Todo negocio requiere inversión de tiempo y dinero. En la masterclass te explico cuánto vale la inversión inicial, según el modelo que elijas. ¡Son 4 días y no tienen ningún costo!'
                 },
                 {
                     question: '¿Qué pasa si no puedo asistir en vivo a la masterclass?',
@@ -153,7 +153,7 @@ export const siteConfig: SiteConfig = {
     dates: {
         title: 'La Masterclass comienza en',
         // Hora de Colombia (UTC-5): mantén el offset para que todas vean la misma cuenta regresiva
-        masterclass: '2026-11-01T21:00:00-05:00'
+        masterclass: '2026-10-01T21:00:00-05:00'
     },
 
     // Textos de botones y formularios
