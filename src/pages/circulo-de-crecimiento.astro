@@ -30,10 +30,10 @@ const { circle, links } = siteConfig;
       <h2 class="gradient-text text-center font-extrabold uppercase tracking-tighter text-3xl">
         {circle.blocksTitle}
       </h2>
-      <div class="inline-flex max-w-[1100px] flex-wrap justify-center gap-4 min-[900px]:gap-8">
+      <div class="flex w-full flex-col gap-4 min-[900px]:gap-6">
         {
           circle.blocks.map((block) => (
-            <div class="card w-[352px] max-w-full">
+            <div class="card w-full">
               <div class="card-header">
                 <div class="img-container">
                   <Image src={icons[block.icon as keyof typeof icons]} alt={block.title} />
