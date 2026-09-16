@@ -38,28 +38,28 @@ export const siteConfig: SiteConfig = {
         {
             number: 1,
             title: 'CLASE #1',
-            subtitle: 'Tu Mapa al Negocio Digital',
+            subtitle: 'El Negocio Digital Que Encaja Con Tu Vida de Mamá',
             description: 'Te cuento mi historia real. Descubrirás los modelos de negocio digital que están funcionando en 2026, sus diferencias, y cómo encajan con TU vida y tu tiempo.',
             icon: 'learn'
         },
         {
             number: 2,
             title: 'CLASE #2',
-            subtitle: 'El Modelo Que Funciona en 2026',
+            subtitle: 'Por Qué Este Modelo Sí Funciona en 2026',
             description: 'Descubrirás cómo funciona el modelo de negocio y por qué será efectivo para ti en este 2026.',
             icon: 'store'
         },
         {
             number: 3,
             title: 'CLASE #3',
-            subtitle: 'La Industria, La Plataforma y El Plan',
+            subtitle: 'La Plataforma Exacta Que Uso Desde Mi Celular',
             description: 'Te muestro la industria, la plataforma exacta que uso para operar desde mi celular, el plan de pagos, y los principios para construir un negocio sostenible.',
             icon: 'rocket'
         },
         {
             number: 4,
             title: 'CLASE #4',
-            subtitle: 'Tu Plan de Acción 2026',
+            subtitle: 'Sal Con Tu Plan de Acción Listo',
             description: 'Resolvemos tus dudas, defines tu próximo paso concreto, y decides si quieres acompañamiento para implementarlo. Sin presión: solo claridad y dirección.',
             icon: 'trophy'
         }
