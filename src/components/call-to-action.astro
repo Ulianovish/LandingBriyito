@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import whatsapp from '~/assets/whatsapp.svg';
-import Modal from './modal.astro';
 import { siteConfig } from '~/config/site.config';
 ---
 
@@ -14,7 +13,6 @@ import { siteConfig } from '~/config/site.config';
     {siteConfig.ui.ctaButton}
     <div class="button-call-2 opacity-0"></div>
   </button>
-  <Modal />
 </div>
 <!-- <div data-aos="fade-up">
   <a href="https://chat.whatsapp.com/HgnvveWfduzKfNepLLxB01" target="_blank" id="whatsappLink">
@@ -33,26 +31,6 @@ import { siteConfig } from '~/config/site.config';
   AOS.init({
     duration: 750
   });
-  !(function (f, b, e, v, n, t, s) {
-    if (f.fbq) return;
-    n = f.fbq = function () {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-    n.push = n.loaded = !0;
-    n.version = '2.0';
-    n.queue = [];
-    t = b.createElement(e);
-    t.async = !0;
-    t.src = v;
-    s = b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t, s);
-  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '7974826735928388');
-  fbq('track', 'PageView');
-
-  // document.getElementById('whatsappLink').addEventListener('click', function () {
-  //   fbq('track', 'CompleteRegistration');
-  // });
 </script>
 
 <style>

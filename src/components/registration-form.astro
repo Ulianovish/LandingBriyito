@@ -1,0 +1,164 @@
+---
+interface Props {
+  webhook: string;
+  whatsappUrl: string;
+  origen: string;
+  labels: {
+    name: string;
+    email: string;
+    whatsapp?: string;
+    submit: string;
+  };
+  placeholders: {
+    name: string;
+    email: string;
+    whatsapp?: string;
+  };
+  errorMessage: string;
+  askWhatsapp?: boolean;
+}
+
+const {
+  webhook,
+  whatsappUrl,
+  origen,
+  labels,
+  placeholders,
+  errorMessage,
+  askWhatsapp = false
+} = Astro.props;
+
+const fieldId = (field: string) => `${origen}-${field}`;
+const inputClass =
+  'mt-1 block w-full rounded-md border border-gray-600 bg-gray-900 px-3 py-2 text-white shadow-sm focus:border-purple-500 focus:outline-none focus:ring-purple-500';
+---
+
+<form
+  class="space-y-4"
+  data-registration-form
+  data-webhook={webhook}
+  data-whatsapp={whatsappUrl}
+  data-origen={origen}
+  data-error-message={errorMessage}
+>
+  <div>
+    <label for={fieldId('name')} class="gradient-text block font-medium text-sm"
+      >{labels.name}</label
+    >
+    <input
+      type="text"
+      name="name"
+      id={fieldId('name')}
+      required
+      autocomplete="name"
+      class={inputClass}
+      placeholder={placeholders.name}
+    />
+  </div>
+  <div>
+    <label for={fieldId('email')} class="gradient-text block font-medium text-sm"
+      >{labels.email}</label
+    >
+    <input
+      type="email"
+      name="email"
+      id={fieldId('email')}
+      required
+      autocomplete="email"
+      class={inputClass}
+      placeholder={placeholders.email}
+    />
+  </div>
+  {
+    askWhatsapp && (
+      <div>
+        <label for={fieldId('whatsapp')} class="gradient-text block font-medium text-sm">
+          {labels.whatsapp}
+        </label>
+        <input
+          type="tel"
+          name="whatsapp"
+          id={fieldId('whatsapp')}
+          required
+          autocomplete="tel"
+          class={inputClass}
+          placeholder={placeholders.whatsapp}
+        />
+      </div>
+    )
+  }
+  <div class="mt-6 flex flex-col items-center gap-3">
+    <button
+      type="submit"
+      class="w-full justify-center rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-3.5 py-2.5 text-center font-semibold text-white shadow-sm transition-all text-sm hover:from-pink-600 hover:to-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 disabled:opacity-70 sm:w-4/5"
+    >
+      {labels.submit}
+    </button>
+    <p class="hidden text-center text-red-400 text-sm" data-error role="alert"></p>
+  </div>
+</form>
+
+<script>
+  import { buildRegistrationPayload, submitRegistration } from '~/utils/registration';
+
+  type Fbq = (...args: unknown[]) => void;
+
+  document.querySelectorAll<HTMLFormElement>('form[data-registration-form]').forEach((form) => {
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const errorBox = form.querySelector<HTMLElement>('[data-error]');
+    const submitLabel = submitButton?.innerHTML ?? '';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      errorBox?.classList.add('hidden');
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Enviando...';
+      }
+
+      const data = new FormData(form);
+      const whatsapp = data.get('whatsapp');
+      const payload = buildRegistrationPayload(
+        {
+          name: String(data.get('name') ?? ''),
+          email: String(data.get('email') ?? ''),
+          whatsapp: whatsapp === null ? undefined : String(whatsapp)
+        },
+        form.dataset.origen ?? 'web',
+        new Date()
+      );
+
+      const result = await submitRegistration({
+        webhook: form.dataset.webhook ?? '',
+        payload
+      }).catch((error) => {
+        console.error('Error:', error);
+        return { ok: false };
+      });
+
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = submitLabel;
+      }
+
+      if (!result.ok) {
+        if (errorBox) {
+          errorBox.textContent = form.dataset.errorMessage ?? 'No pudimos guardar tu registro.';
+          errorBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // El Lead solo se registra cuando la inscripción quedó guardada
+      const fbq = (window as unknown as { fbq?: Fbq }).fbq;
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: form.dataset.origen });
+      }
+
+      window.open(form.dataset.whatsapp ?? '', '_blank');
+      form.reset();
+      form.dispatchEvent(new CustomEvent('registration:success', { bubbles: true }));
+    });
+  });
+</script>

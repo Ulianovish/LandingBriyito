@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets';
+import learn from '~/assets/learn.svg';
+import rocket from '~/assets/rocket.svg';
+import store from '~/assets/store.svg';
+import trophy from '~/assets/trophy.svg';
+import RegistrationForm from '~/components/registration-form.astro';
+import Starfield from '~/components/starfield.astro';
+import { siteConfig } from '~/config/site.config';
+import BaseLayout from '~/layouts/base.astro';
+
+const icons = { learn, store, rocket, trophy };
+const { circle, links } = siteConfig;
+---
+
+<BaseLayout title={circle.seo.title} description={circle.seo.description}>
+  <Starfield />
+
+  <main class="relative z-10 mx-auto flex max-w-5xl flex-col items-center gap-16 px-6 py-16">
+    <section class="flex flex-col items-center gap-6 text-center">
+      <h1
+        class="gradient-text font-extrabold tracking-tighter text-4xl sm:text-5xl"
+        set:html={circle.hero.title}
+      />
+      <p class="max-w-2xl font-extrabold leading-snug text-pink-300 text-lg">
+        «{circle.hero.quote}»
+      </p>
+      <p class="gradient-text max-w-2xl leading-relaxed" set:html={circle.hero.description} />
+      <a
+        href="#registro"
+        class="rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 font-bold uppercase text-white transition hover:scale-105"
+      >
+        {circle.ui.heroCta}
+      </a>
+    </section>
+
+    <section class="flex w-full flex-col items-center gap-8">
+      <h2 class="gradient-text text-center font-extrabold uppercase tracking-tighter text-3xl">
+        {circle.blocksTitle}
+      </h2>
+      <div class="inline-flex max-w-[1100px] flex-wrap justify-center gap-4 min-[900px]:gap-8">
+        {
+          circle.blocks.map((block) => (
+            <div class="card w-[352px] max-w-full">
+              <div class="flex flex-row">
+                <div class="h-16 w-16">
+                  <Image src={icons[block.icon as keyof typeof icons]} alt={block.title} />
+                </div>
+                <div class="gradient-text-2 ml-4 self-center font-extrabold text-xl">
+                  <h3>{block.title}</h3>
+                </div>
+              </div>
+              <p class="description mt-3 text-justify">{block.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="flex flex-col items-center gap-4 text-center">
+      <h2 class="gradient-text font-extrabold uppercase tracking-tighter text-3xl">
+        {circle.howItWorksTitle}
+      </h2>
+      <ul class="flex flex-col gap-2 text-gray-200">
+        {circle.howItWorks.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="registro" class="w-full max-w-md scroll-mt-10">
+      <div class="form-card rounded-xl bg-black p-6 shadow-xl">
+        <h2 class="gradient-text text-center font-extrabold uppercase tracking-tighter text-2xl">
+          {circle.ui.formTitle}
+        </h2>
+        <p class="mt-2 text-center text-gray-300 text-sm">{circle.ui.formIntro}</p>
+        <div class="mt-5">
+          <RegistrationForm
+            webhook={links.circleWebhook}
+            whatsappUrl={links.circleWhatsapp}
+            origen="circulo"
+            labels={circle.ui.formLabels}
+            placeholders={circle.ui.placeholders}
+            errorMessage={circle.ui.errorMessage}
+            askWhatsapp
+          />
+        </div>
+      </div>
+    </section>
+
+    <a href="/" class="text-gray-400 underline underline-offset-4 text-sm hover:text-pink-300">
+      {circle.ui.backLink}
+    </a>
+  </main>
+</BaseLayout>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgba(221, 127, 141, 0.6);
+    transition: all 100ms ease;
+  }
+
+  .card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 15px 15px 35px -2px #c7c3c7;
+  }
+
+  .card img {
+    width: 100%;
+  }
+
+  .description {
+    color: black;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+  }
+
+  .form-card {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#000, #000), linear-gradient(to right, #ec4899, #9333ea);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+</style>
